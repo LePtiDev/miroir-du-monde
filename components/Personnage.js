@@ -19,7 +19,7 @@ class Personnage extends React.Component {
             // code ici sur le composant
             <View style={styles.container}>
                 {this.personnage.map((personnage) => (
-                    <TouchableOpacity key={id} style={styles.carrer}></TouchableOpacity>
+                    <TouchableOpacity key={this.personnage.id} style={styles.carrer}></TouchableOpacity>
                 ))}
             </View>
         )

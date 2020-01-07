@@ -1,6 +1,6 @@
 // Navigation/Navigation.js
-import SafeAreaView from 'react-native-safe-area-view';
-import { createStackNavigator, createAppContainer } from 'react-navigation-stack'
+import { createStackNavigator } from 'react-navigation-stack'
+import { createAppContainer } from 'react-navigation';
 
 import Log from '../components/Log'
 
