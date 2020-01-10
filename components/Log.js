@@ -1,44 +1,49 @@
 import React from 'react'
-import {StyleSheet, View, Text, TouchableOpacity, SectionList, ScrollView} from 'react-native'
+import {StyleSheet, View, Text, TouchableOpacity, ScrollView, Image, Button} from 'react-native'
 import { FlatList } from 'react-native-gesture-handler';
+import { AuthSession } from 'expo';
 
 class Log extends React.Component {
 
     constructor(props){
         super(props)
         this.personnage = [
-            {id: 1, name: "perso 1"},
-            {id: 2, name: "perso 2"},
-            {id: 3, name: "perso 3"},
-            {id: 4, name: "perso 4"},
+            {id: 1, name: "paul", sexe: "Femelle", caracteristique: "Eau", picture: require("../img/nain.png")},
+            {id: 1, name: "paul", sexe: "Femelle", caracteristique: "Eau", picture: require("../img/nain.png")},
         ]
 
     }
-
+    
     render(){
+
+        console.log(this.personnage.picture)
 
         return(
             // code ici sur le composant
             <ScrollView style={styles.vuePrincipal}>
+                <Button title="New" onPress={() => this.props.navigation.navigate("Sex")}></Button>
                 <Text style={styles.titre}>Choix du profile</Text>
                 <View>
                     <FlatList
                         data={this.personnage}
                         renderItem={({item}) => 
                         <TouchableOpacity
-                            key = {this.personnage.id}
-                            name = {this.personnage.name}
                             style= {styles.carrer}
-                            onPress={() => this.props.navigation.navigate("Sex")}
+                            keyExtractor={(item) => item.id.toString()}
                         >
                             <View style={styles.container}>
                                 <View style={styles.left}>
-                                    <View styles={styles.pictures}></View>
+                                    <Image style={{width : 85, height : 100}} source={item.picture}/>
                                 </View>
-                                <View style={styles.right}></View>
+                                <View style={styles.right}>
+                                    <Text style={styles.nom}>{item.name}</Text>
+                                    <Text>sexe : {item.sexe}</Text>
+                                    <Text>Caractéristique : {item.caracteristique}</Text>
+                                </View>
                             </View>
-                            <Text>{this.name}</Text>
-                        </TouchableOpacity>}
+                            <View style={styles.separateur}></View>
+                        </TouchableOpacity>
+                        }
                     />
                 </View>
             </ScrollView>
@@ -48,22 +53,36 @@ class Log extends React.Component {
 
 var styles = StyleSheet.create({
 
+    new:{
+        position: "absolute",
+        bottom: 40,
+        right: 20,
+        height: 70,
+        width: 70,
+        backgroundColor: "rgba(0, 0, 255, 0.26)",
+        borderRadius: 35,
+    },
 
-    pictures: {
-        height: 50,
-        width: 50,
-        backgroundColor: "yellow"
-    },  
+    separateur: {
+        height: 2,
+        width: 300,
+        backgroundColor: "grey"
+    },
+
+    nom: {
+        fontSize: 20,
+    },
 
     left:{
         flex: 1,
-        backgroundColor: "red"
-        
+        padding: 20,
+        alignItems: "center",
+        justifyContent: "center"
     },
 
     right: {
+        padding: 20,
         flex: 2,
-        backgroundColor: "green"
     },
 
     vuePrincipal:{
@@ -82,14 +101,13 @@ var styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: "row",
+        padding: 15,
     },
 
     carrer: {
         height: 150,
-        marginLeft: 0,
-        marginRight: 0,
-        backgroundColor: "blue",
-        marginBottom: 40,
+        margin: "auto",
+        margin: 35,
     },
 });
 
