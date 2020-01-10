@@ -1,59 +1,44 @@
 import React from 'react'
 import {StyleSheet, View, Text, TouchableOpacity, ScrollView, Image, Button} from 'react-native'
 import { FlatList } from 'react-native-gesture-handler';
+import {LinearGradient} from 'expo-linear-gradient';
 import { AuthSession } from 'expo';
 
 class Log extends React.Component {
 
     constructor(props){
         super(props)
-        state = {
-            personnage : [
-                id = 1,
-                name = "paul", 
-                sexe = "Femelle", 
-                caracteristique = "Eau", 
-                picture = require("../img/nain.png")
-            ] 
-        }
         this.personnage = [
             {id: 1, name: "paul", sexe: "Femelle", caracteristique: "Eau", picture: require("../img/nain.png")},
-            {id: 1, name: "paul", sexe: "Femelle", caracteristique: "Eau", picture: require("../img/nain.png")},
+            {id: 2, name: "jack", sexe: "Male", caracteristique: "Terre", picture: require("../img/nain.png")},
         ]
-
     }
 
-    storeData = async () => {
-        try {
-    
-          await AsyncStorage.setItem('prenom', 'Elfe')
-    
-          this.setState({
-            item : await AsyncStorage.getItem('prenom'),
-          })
-  
-        } catch (e) {
-          console.log(error)
-        }
-      };
-    
     render(){
-
-        console.log(this.personnage.picture)
 
         return(
             // code ici sur le composant
-            <ScrollView style={styles.vuePrincipal}>
-                <Button style={styles.bouton} title="New" ></Button>
-                <Text style={styles.titre}>Choix du profile</Text>
-                <View>
+            <ScrollView>
+                <LinearGradient
+                    colors={['#40407A', '#A72196']}
+                    style={{
+                        position: 'absolute',
+                        left: 0,
+                        right: 0,
+                        top: 0,
+                        height: 900,
+                    }}
+                 />
+                <TouchableOpacity style={styles.bouton} onPress={() => this.props.navigation.navigate("Sex")}>
+                    <Text style={{fontSize: 20, color: "white"}}>Nouveau Profil</Text>
+                </TouchableOpacity>
+                <View style={styles.vuePrincipal}>
                     <FlatList
                         data={this.personnage}
                         renderItem={({item}) => 
                         <TouchableOpacity
                             style= {styles.carrer}
-                            keyExtractor={(item) => item.id.toString()}
-                            onPress={() => this.props.navigation.navigate("Sex")}
+                            keyExtractor={(item) => item.name.toString()}
                         >
                             <View style={styles.container}>
                                 <View style={styles.left}>
@@ -78,7 +63,17 @@ class Log extends React.Component {
 var styles = StyleSheet.create({
 
     bouton: {
-        marginTop: 20,
+        textAlign: "center",
+        marginTop: 40,
+        paddingTop: 20,
+        paddingBottom: 20,
+        marginLeft: 90,
+        marginRight: 90,
+        alignItems: "center",
+        justifyContent: "center",
+        borderColor: "white",
+        borderWidth: 2,
+        borderRadius: 20,
     },
 
     new:{
@@ -116,7 +111,8 @@ var styles = StyleSheet.create({
     vuePrincipal:{
         flex: 1,
         paddingLeft: 20,
-        paddingRight: 20
+        paddingRight: 20,
+        paddingTop: 30,
     },
 
     titre: {
