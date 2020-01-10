@@ -1,13 +1,13 @@
 import React from 'react'
-import {StyleSheet, View} from 'react-native'
+import {StyleSheet, View, TouchableOpacity} from 'react-native'
 
 
 class Sex extends React.Component {
   render() {
     return (
         <View style={styles.Navigation}>
-          <View style={styles.homme}></View>
-          <View style={styles.femme}></View>
+          <TouchableOpacity style={styles.homme}></TouchableOpacity>
+          <TouchableOpacity style={styles.femme}></TouchableOpacity>
         </View>
     )
   }

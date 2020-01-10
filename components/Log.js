@@ -7,12 +7,35 @@ class Log extends React.Component {
 
     constructor(props){
         super(props)
+        state = {
+            personnage : [
+                id = 1,
+                name = "paul", 
+                sexe = "Femelle", 
+                caracteristique = "Eau", 
+                picture = require("../img/nain.png")
+            ] 
+        }
         this.personnage = [
             {id: 1, name: "paul", sexe: "Femelle", caracteristique: "Eau", picture: require("../img/nain.png")},
             {id: 1, name: "paul", sexe: "Femelle", caracteristique: "Eau", picture: require("../img/nain.png")},
         ]
 
     }
+
+    storeData = async () => {
+        try {
+    
+          await AsyncStorage.setItem('prenom', 'Elfe')
+    
+          this.setState({
+            item : await AsyncStorage.getItem('prenom'),
+          })
+  
+        } catch (e) {
+          console.log(error)
+        }
+      };
     
     render(){
 
@@ -21,7 +44,7 @@ class Log extends React.Component {
         return(
             // code ici sur le composant
             <ScrollView style={styles.vuePrincipal}>
-                <Button title="New" onPress={() => this.props.navigation.navigate("Sex")}></Button>
+                <Button style={styles.bouton} title="New" ></Button>
                 <Text style={styles.titre}>Choix du profile</Text>
                 <View>
                     <FlatList
@@ -30,6 +53,7 @@ class Log extends React.Component {
                         <TouchableOpacity
                             style= {styles.carrer}
                             keyExtractor={(item) => item.id.toString()}
+                            onPress={() => this.props.navigation.navigate("Sex")}
                         >
                             <View style={styles.container}>
                                 <View style={styles.left}>
@@ -52,6 +76,10 @@ class Log extends React.Component {
 }
 
 var styles = StyleSheet.create({
+
+    bouton: {
+        marginTop: 20,
+    },
 
     new:{
         position: "absolute",
