@@ -3,6 +3,7 @@ import { createStackNavigator } from 'react-navigation-stack'
 import { createAppContainer } from 'react-navigation';
 
 import Log from '../components/Log'
+import Sex from '../components/Sex'
 
 const LogStackNavigator = createStackNavigator({
   Log: { 
@@ -10,6 +11,13 @@ const LogStackNavigator = createStackNavigator({
     navigationOptions: {
       title: 'Choix du personnage'
     }
+  },
+
+  Sex: {
+      screen: Sex,
+      navigationOptions: {
+        title: 'Choix du Sexe'
+      }
   }
 })
 
