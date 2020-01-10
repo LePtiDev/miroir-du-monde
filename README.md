@@ -6,7 +6,9 @@ Une fois ca fais vous devez utiliser la commande suivante afin de lancer l'insta
 
 >je vous précise que ces commande sont fais sous un mac avec npm installer et mis a jours
 
+```
 npm install
+```
 
 Suite a ca vous devez glisser lancer la commande qui permet de lancer votre application mobile.
 
@@ -14,11 +16,18 @@ Suite a ca vous devez glisser lancer la commande qui permet de lancer votre appl
 
 >Elle nécésite aussi d'avoir mis a jours le logiciel Xcode sous sa dernière version
 
+
+```
 npm start
+```
+
 
 ou alors 
 
+
+```
 expo start
+```
 
 Cela dépend si vous avez installer expo ou non avant.
 
